@@ -109,25 +109,14 @@ require("dotenv").config();
 const port = process.env.PORT || 3001;
 const ABI = require("./abi.json");
 
-app.use(cors());
+app.use(cors(
+  {
+    origin: "https://https://coinrade.vercel.app",
+  }
+));
 app.use(express.json());
 
-const allowedOrigins = [
-  "https://coinrade.vercel.app/", // Replace with your frontend URL
-  "http://localhost:3000" // Allow requests from localhost 3001
-];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 
 function convertArrayToObjects(arr) {
