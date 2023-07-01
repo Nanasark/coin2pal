@@ -36,10 +36,12 @@ function App() {
   }
 
   async function getNameAndBalance() {
-    const res = await axios.get(`http://localhost:3001/getNameAndBalance`, {
-      params: { userAddress: address },
-      
-    });
+    const url = "https://coinrade-backend.vercel.app/getNameAndBalance" || "http://localhost:3001/getNameAndBalance"; // Replace with your actual backend URL
+  
+  const res = await axios.get(url, {
+    params: { userAddress: address },
+  });
+
   
     const response = res.data;
     console.log("Response:", response); // Log the entire response object for debugging

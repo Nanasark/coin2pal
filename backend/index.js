@@ -106,7 +106,7 @@ const Moralis = require("moralis").default;
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
-const port = 3001;
+const port = process.env.PORT || 3001;
 const ABI = require("./abi.json");
 
 app.use(cors());
