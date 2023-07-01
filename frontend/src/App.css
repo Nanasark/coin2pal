@@ -1,4 +1,4 @@
-.App {
+/* .App {
   min-width: 100%;
   min-height: 100vh;
 }
@@ -109,7 +109,23 @@
   position: relative;
 }
 
-.numReqs {
+
+
+.quickOption:hover {
+  cursor: pointer;
+}
+
+
+
+.ant-table-tbody .ant-table-row:nth-child(even) {
+  background-color: rgb(13, 45, 159);
+}
+.ant-table-tbody .ant-table-row:nth-child(odd) {
+  background-color: rgb(99, 199, 32);
+} */
+
+
+/* .numReqs {
   position: absolute;
   top: -5px;
   right: -5px;
@@ -122,11 +138,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.quickOption:hover {
-  cursor: pointer;
-}
+} */
 
 .accountDetailRow {
   display: flex;
@@ -148,11 +160,4 @@
   color: #767676;
   font-size: 12px;
   font-weight: 600;
-}
-
-.ant-table-tbody .ant-table-row:nth-child(even) {
-  background-color: rgb(13, 45, 159);
-}
-.ant-table-tbody .ant-table-row:nth-child(odd) {
-  background-color: rgb(99, 199, 32);
 }

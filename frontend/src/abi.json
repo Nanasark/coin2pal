@@ -40,7 +40,7 @@
             "type": "string"
           }
         ],
-        "internalType": "struct Paypal.sendReceive[]",
+        "internalType": "struct Coinrade.sendReceive[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -59,7 +59,7 @@
           { "internalType": "string", "name": "name", "type": "string" },
           { "internalType": "bool", "name": "hasName", "type": "bool" }
         ],
-        "internalType": "struct Paypal.userName",
+        "internalType": "struct Coinrade.userName",
         "name": "",
         "type": "tuple"
       }

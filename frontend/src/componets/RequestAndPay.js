@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { DollarOutlined, SwapOutlined } from "@ant-design/icons";
 import { Modal, Input, InputNumber } from "antd";
+import dollarsign from "./dollarsign.svg"
 
 
 function RequestAndPay({}) {
@@ -54,24 +54,25 @@ function RequestAndPay({}) {
         <p>Message</p>
         <Input placeholder="Lunch Bill..." value={requestMessage} onChange={(val)=>setRequestMessage(val.target.value)}/>
       </Modal>
-      <div className="requestAndPay">
+      <div className="flex gap-20 relative lg:top-[-20px]">
         <div
-          className="quickOption"
+          className="text-[#FDFFF7] flex flex-col justify-center items-center bg-[#006843] lg:w-[75px] lg:h-[75px] rounded-[5px]"
           onClick={() => {
             showPayModal();
           }}
         >
-          <DollarOutlined style={{ fontSize: "26px" }} />
+          <img src={dollarsign} alt="dollar sign"></img>
           Pay
-            <div className="numReqs">2</div>
+          <p>money now</p>
+            <div className="relative text-center rounded-full w-[20px] lg:bottom-[65px] bg-black ">2</div>
         </div>
         <div
-          className="quickOption"
+          className="text-[#FDFFF7] flex flex-col justify-center items-center bg-[#006843] lg:w-[75px] lg:h-[75px] rounded-[5px]"
           onClick={() => {
             showRequestModal();
           }}
         >
-          <SwapOutlined style={{ fontSize: "26px" }} />
+          
           Request
         </div>
       </div>

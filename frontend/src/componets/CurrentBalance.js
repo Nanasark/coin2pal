@@ -1,18 +1,24 @@
 import React from "react";
-import { Card } from "antd";
 
-function CurrentBalance({}) {
+
+function CurrentBalance({dollars}) {
   return (
-    <Card title="Current Balance" style={{ width: "100%" }}>
-      <div className="currentBalance">
-        <div style={{ lineHeight: "70px" }}>$ 121.12</div>
-        <div style={{ fontSize: "20px" }}>Available</div>
+    <div className="bg-[#FDFFF7] rounded-[5px] justify-between lg:h-[220px] lg:w-[350px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col items-center border-[#C6821D] border-[1px]" title="Current Balance">
+      <div className="flex  justify-between border-b-2 border-[#00A878] relative mt-[15px] w-[300px]">
+      <h1 className="text-[#006843] font-semibold text-[18px]">Current Balance</h1>
+      <p className="text-[18px]">Balance History</p> 
       </div>
-      <div className="balanceOptions">
-        <div className="extraOption">Swap Tokens</div>
-        <div className="extraOption">Bridge Tokens</div>
+     
+      <div className="lg:w-[300px] relative gap-5 flex">
+        <div className="text-[64px] font-thin" >${dollars}</div>
+        <div className="relative top-[50px] text-[18px]">Available</div>
       </div>
-    </Card>
+      <div className="flex text-center relative lg:text-[12px] lg:gap-2 bottom-[10px]">
+        <div className="border border-[#006843] lg:w-[100px]  rounded-[20px]">Swap Tokens</div>
+        <div className="border border-[#006843] lg:w-[100px]  rounded-[20px]">Bridge Tokens</div>
+        <div className="border border-[#006843] lg:w-[100px]  rounded-[20px]">Manage Tokens</div>
+      </div>
+    </div>
   );
 }
 

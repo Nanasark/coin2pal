@@ -4,18 +4,19 @@ import { UserOutlined } from "@ant-design/icons";
 import matic from "../matic.png";
 
 
-function AccountDetails({}) {
+
+function AccountDetails({ address, name, balance }) {
   
 
   return (
-    <Card title="Account Details" style={{ width: "100%" }}>
+    <div className="bg-[#FDFFF7] rounded-[5px] justify-between lg:h-[220px] lg:w-[350px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex flex-col items-center border-[#C6821D] border-[1px] " title="Account Details" style={{ width: "100%" }}>
       <div className="accountDetailRow">
         <UserOutlined style={{ color: "#767676", fontSize: "25px" }} />
         <div>
-          <div className="accountDetailHead"> Moralis Mage </div>
+          <div className="accountDetailHead"> {name} </div>
           <div className="accountDetailBody">
-            {" "}
-            Address: 0x12...3456
+          {" "}
+            Address: {address.slice(0, 4)}...{address.slice(38)}
           </div>
         </div>
       </div>
@@ -23,14 +24,14 @@ function AccountDetails({}) {
         <img src={matic} alt="maticLogo" width={25} />
         <div>
           <div className="accountDetailHead"> Native Matic Tokens</div>
-          <div className="accountDetailBody">100.32 Matic</div>
+          <div className="accountDetailBody">{balance} Matic</div>
         </div>
       </div>
       <div className="balanceOptions">
         <div className="extraOption">Set Username</div>
         <div className="extraOption">Switch Accounts</div>
       </div>
-    </Card>
+    </div>
   );
 }
 
