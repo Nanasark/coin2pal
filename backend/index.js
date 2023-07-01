@@ -111,7 +111,7 @@ const ABI = require("./abi.json");
 
 app.use(cors(
   {
-    origin: "https://https://coinrade.vercel.app",
+    origin: "https://coinrade.vercel.app",
   }
 ));
 app.use(express.json());
