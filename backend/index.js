@@ -112,13 +112,23 @@ const ABI = require("./abi.json");
 app.use(cors());
 app.use(express.json());
 
+const allowedOrigins = [
+  "https://coinrade.vercel.app/", // Replace with your frontend URL
+  "http://localhost:3001" // Allow requests from localhost 3001
+];
+
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://coinrade.vercel.app/"); // Replace * with the appropriate origin or set it to the specific domain you want to allow
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", true);
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
+
 
 function convertArrayToObjects(arr) {
   const dataArray = arr.map((transaction, index) => ({
