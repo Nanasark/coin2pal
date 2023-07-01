@@ -112,6 +112,14 @@ const ABI = require("./abi.json");
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://coinrade.vercel.app/"); // Replace * with the appropriate origin or set it to the specific domain you want to allow
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+});
+
 function convertArrayToObjects(arr) {
   const dataArray = arr.map((transaction, index) => ({
     key: (arr.length + 1 - index).toString(),
