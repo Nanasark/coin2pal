@@ -113,7 +113,8 @@ app.use(cors());
 app.use(express.json());
 
 const allowedOrigins = [
-  "https://coinrade.vercel.app" // Replace with your frontend URL
+  "https://coinrade.vercel.app/", // Replace with your frontend URL
+  "http://localhost:3000" // Allow requests from localhost 3001
 ];
 
 app.use((req, res, next) => {
