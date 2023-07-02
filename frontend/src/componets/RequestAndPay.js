@@ -1,14 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Input, InputNumber } from "antd";
+import { DollarOutlined, SwapOutlined } from "@ant-design/icons";
 import dollarsign from "./dollarsign.svg"
+import { Modal, Input, InputNumber } from "antd";
+import { usePrepareContractWrite, useContractWrite, useWaitForTransaction  } from "wagmi";
+import { polygonMumbai } from "@wagmi/chains";
+import ABI from "../abi.json";
 
 
-function RequestAndPay({}) {
+function RequestAndPay({ requests, getNameAndBalance }) {
   const [payModal, setPayModal] = useState(false);
   const [requestModal, setRequestModal] = useState(false);
   const [requestAmount, setRequestAmount] = useState(5);
   const [requestAddress, setRequestAddress] = useState("");
   const [requestMessage, setRequestMessage] = useState("");
+
+  const { config } = usePrepareContractWrite({
+    chainId: polygonMumbai.id,
+    address: "0x4Cb41F3abA88647beDEdF91856e9119C4f4Fe886",
+    abi: ABI,
+    functionName: "payRequest",
+    args: [0],
+    overrides: {
+      value: String(Number(requests["1"][0])),
+    },
+  });
+
+  const { write, data } = useContractWrite(config);
+
+  const { config: configRequest } = usePrepareContractWrite({
+    chainId: polygonMumbai.id,
+    address: "0x4Cb41F3abA88647beDEdF91856e9119C4f4Fe886",
+    abi: ABI,
+    functionName: "createRequest",
+    args: [requestAddress, requestAmount, requestMessage],
+  });
+
+  const { write: writeRequest, data: dataRequest } = useContractWrite(configRequest);
+
+
+  const { isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  })
+
+  const { isSuccess: isSuccessRequest } = useWaitForTransaction({
+    hash: dataRequest?.hash,
+  })
+
 
   const showPayModal = () => {
     setPayModal(true);
@@ -24,23 +61,38 @@ function RequestAndPay({}) {
     setRequestModal(false);
   };
 
+  useEffect(()=>{
+    if(isSuccess || isSuccessRequest){
+      getNameAndBalance();
+    }
+  },[isSuccess, isSuccessRequest])
+
   return (
     <>
       <Modal
         title="Confirm Payment"
         open={payModal}
         onOk={() => {
+          write?.();
           hidePayModal();
         }}
         onCancel={hidePayModal}
         okText="Proceed To Pay"
         cancelText="Cancel"
       >
+        {requests && requests["0"].length > 0 && (
+          <>
+            <h2>Sending payment to {requests["3"][0]}</h2>
+            <h3>Value: {(requests["1"][0])} Matic</h3>
+            <p>"{requests["2"][0]}"</p>
+          </>
+        )}
       </Modal>
       <Modal
         title="Request A Payment"
         open={requestModal}
         onOk={() => {
+          writeRequest?.();
           hideRequestModal();
         }}
         onCancel={hideRequestModal}
@@ -57,27 +109,35 @@ function RequestAndPay({}) {
       <div className="flex gap-20 relative lg:top-[-20px]">
         <div
           className="text-[#FDFFF7] flex flex-col justify-center items-center bg-[#006843] lg:w-[75px] lg:h-[75px] rounded-[5px]"
-          onClick={() => {
-            showPayModal();
-          }}
-        >
-          <img src={dollarsign} alt="dollar sign"></img>
-          Pay
-          <p>money now</p>
-            <div className="relative text-center rounded-full w-[20px] lg:bottom-[65px] bg-black ">2</div>
-        </div>
-        <div
-          className="text-[#FDFFF7] flex flex-col justify-center items-center bg-[#006843] lg:w-[75px] lg:h-[75px] rounded-[5px]"
-          onClick={() => {
-            showRequestModal();
-          }}
-        >
+            onClick={() => {
+              showPayModal();
+            }}
+          > 
           
-          Request
+          <img src={dollarsign} alt="dollar sign"></img>
+            Pay
+            <p>money now</p>
+            {requests && requests["0"].length > 0 && (
+              <div className="relative text-center rounded-full w-[20px] lg:bottom-[65px] bg-black ">{requests["0"].length}</div>
+            )}
+          </div>
+          <div
+            className="text-[#FDFFF7] flex flex-col justify-center items-center bg-[#006843] lg:w-[75px] lg:h-[75px] rounded-[5px]"
+            onClick={() => {
+              showRequestModal();
+            }}
+          >
+            
+            Request
         </div>
-      </div>
+      </div> 
+              
+        
     </>
   );
 }
 
 export default RequestAndPay;
+
+// className="text-[#FDFFF7] flex flex-col justify-center items-center bg-[#006843] lg:w-[75px] lg:h-[75px] rounded-[5px]"
+

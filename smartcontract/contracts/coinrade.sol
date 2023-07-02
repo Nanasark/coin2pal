@@ -76,7 +76,7 @@ function payRequest(uint256 _request) public payable {
     request[] storage myRequests = requests[msg.sender];
     request storage payableRequest = myRequests[_request];
         
-    uint256 toPay = payableRequest.amount * 1000000000000000000;
+    uint256 toPay = payableRequest.amount;
     require(msg.value == (toPay), "Pay Correct Amount");
 
     payable(payableRequest.requestor).transfer(msg.value);

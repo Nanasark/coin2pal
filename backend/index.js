@@ -109,12 +109,9 @@ require("dotenv").config();
 const port = process.env.PORT || 3001;
 const ABI = require("./abi.json");
 
-app.use(cors(
-  {
-    origin: "https://coinrade.vercel.app",
-  }
-));
+app.use(cors());
 app.use(express.json());
+
 
 
 
@@ -137,7 +134,7 @@ app.get("/getNameAndBalance", async (req, res) => {
 
   const response = await Moralis.EvmApi.utils.runContractFunction({
     chain: "0x13881",
-    address: "0x2Ea89366e4DA9e73Fd480A476C04a74263e34dAC",
+    address: "0x4Cb41F3abA88647beDEdF91856e9119C4f4Fe886",
     functionName: "getMyName",
     abi: ABI,
     params: { _user: userAddress },
@@ -162,7 +159,7 @@ app.get("/getNameAndBalance", async (req, res) => {
 
   const fourResponse = await Moralis.EvmApi.utils.runContractFunction({
     chain: "0x13881",
-    address: "0x2Ea89366e4DA9e73Fd480A476C04a74263e34dAC",
+    address: "0x4Cb41F3abA88647beDEdF91856e9119C4f4Fe886",
     functionName: "getMyHistory",
     abi: ABI,
     params: { _user: userAddress },
@@ -173,7 +170,7 @@ app.get("/getNameAndBalance", async (req, res) => {
 
   const fiveResponse = await Moralis.EvmApi.utils.runContractFunction({
     chain: "0x13881",
-    address: "0x2Ea89366e4DA9e73Fd480A476C04a74263e34dAC",
+    address: "0x4Cb41F3abA88647beDEdF91856e9119C4f4Fe886",
     functionName: "getMyRequests",
     abi: ABI,
     params: { _user: userAddress },
