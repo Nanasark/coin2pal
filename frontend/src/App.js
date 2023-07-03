@@ -9,6 +9,7 @@ import RecentActivity from "./componets/RecentActivity";
 import { useConnect, useAccount, useDisconnect } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import axios from "axios";
+import Disclaimer from "./componets/Disclaimer";
 
 const { Header, Content } = Layout;
 
@@ -60,12 +61,12 @@ function App() {
   }, [isConnected]);
 
   return (
-    <div className="w-screen bg-[#EAF8BF] ">
+    <div className="w-screen overflow-visible  bg-[#EAF8BF] h-screen  ">
       <Layout>
         <Header className="w-screen bg-[#EAF8BF] lg:flex lg:justify-between lg:items-center">
           <div className="flex gap-10 items-center">
             <div className="relative">
-              <img src={logo} alt="logo" className=" relative w-[200px] h-[60px]" ></img> 
+              <img src={logo} alt="logo" className=" relative w-[200px] h-[80px]" ></img> 
             </div>
            {isConnected &&
             <div className="relative flex justify-center gap-10">
@@ -79,11 +80,11 @@ function App() {
           </div>
 
           {isConnected ? (
-            <Button type={"primary"} onClick={disconnectAndSetNull}>
+            <Button className ="border border-[#006843] rounded-[20px] text-[#006843]" type={"primary"} onClick={disconnectAndSetNull}>
               Disconnect Wallet
             </Button>
           ) : (
-            <Button type={"primary"} onClick={()=>{
+            <Button className="border border-[#006843] rounded-[20px] text-[#006843]" type={"primary"} onClick={()=>{
               console.log(requests); connect();
             }}>
               Connect Wallet
@@ -91,7 +92,7 @@ function App() {
           )}
         </Header>
 
-        <Content className="lg:flex bg-[#EAF8BF] w-screen lg:justify-between">
+        <Content className="lg:flex bg-[#EAF8BF] xl:justify-center xl:gap-[90px] w-screen lg:justify-between">
         {isConnected ? (
             <>
           <div className="lg :flex relative lg:left-[30px] lg:flex-col lg:gap-10 bg-[#EAF8BF]">
@@ -103,12 +104,41 @@ function App() {
             balance={balance}
             />
           </div>
-          <div className="relative right-[30px]">
+          <div className="relative flex flex-col gap-4 right-[30px]">
             <RecentActivity  history={history} />
+            <Disclaimer />
           </div>
           </>
           ) : (
-            <div>Please Login</div>
+            <div>Please Login
+               <div>Please Login</div>
+               <div>Please Login</div>
+               <div>Please Login</div>
+               <div>Please Login</div>
+                <div>Please Login</div> <div>Please Login</div>
+                <div>Please Login</div>
+                <div>Please Login</div>
+                <div>Please Login</div>
+                <div>Please Login</div>
+                 <div>Please Login</div> <div>Please Login</div>
+                 <div>Please Login</div>
+
+
+                 <div>Please Login</div>
+                 <div>Please Login</div>
+                  <div>Please Login</div> <div>Please Login</div>
+
+                  <div>Please Login</div>
+                   <div>Please Login</div>
+
+                    <div>Please Login</div>
+                     <div>Please Login</div>
+
+
+                     <div>Please Login</div> <div>Please Login</div>
+
+                      <div>Please Login</div>
+            </div>
           )}
         </Content>
       </Layout>

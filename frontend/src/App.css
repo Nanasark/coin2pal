@@ -163,11 +163,11 @@
 }
 
 .quickOption {
-  background-color: #31579E;
+  background-color: #439e31;
   height:100px;
   width: 100px;
   border-radius: 10px;
-  color: white;
+  color: rgb(38, 112, 109);
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -175,4 +175,8 @@
   flex-direction: column;
   gap: 15px;
   position: relative;
+}
+
+.ant-table-tbody .ant-table-row:nth-child(even) {
+  background-color: #D1EFB5;
 }

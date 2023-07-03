@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { DollarOutlined, SwapOutlined } from "@ant-design/icons";
-import dollarsign from "./dollarsign.svg"
+import dollarsign from "./dollarsign.svg";
+import cash from "./cash.png";
+import plus from "./plus.png";
 import { Modal, Input, InputNumber } from "antd";
 import { usePrepareContractWrite, useContractWrite, useWaitForTransaction  } from "wagmi";
 import { polygonMumbai } from "@wagmi/chains";
@@ -106,7 +108,9 @@ function RequestAndPay({ requests, getNameAndBalance }) {
         <p>Message</p>
         <Input placeholder="Lunch Bill..." value={requestMessage} onChange={(val)=>setRequestMessage(val.target.value)}/>
       </Modal>
-      <div className="flex gap-20 relative lg:top-[-20px]">
+
+
+      <div className="flex gap-7 items-center relative justify-center lg:top-[20px]">
         <div
           className="text-[#FDFFF7] flex flex-col justify-center items-center bg-[#006843] lg:w-[75px] lg:h-[75px] rounded-[5px]"
             onClick={() => {
@@ -116,9 +120,9 @@ function RequestAndPay({ requests, getNameAndBalance }) {
           
           <img src={dollarsign} alt="dollar sign"></img>
             Pay
-            <p>money now</p>
+            <p className="text-[12px]">money now</p>
             {requests && requests["0"].length > 0 && (
-              <div className="relative text-center rounded-full w-[20px] lg:bottom-[65px] bg-black ">{requests["0"].length}</div>
+              <div className="relative text-center left-[30px] rounded-full w-[20px] lg:bottom-[65px] bg-black ">{requests["0"].length}</div>
             )}
           </div>
           <div
@@ -127,8 +131,18 @@ function RequestAndPay({ requests, getNameAndBalance }) {
               showRequestModal();
             }}
           >
-            
+            <img className="w-[20px]" src={cash} alt="dollar sign"></img>
             Request
+            <p className="text-[12px]">money now</p>
+        </div>
+        <div
+            className="text-[#006843] flex flex-col justify-center items-center border border-[#006843] lg:w-[75px] lg:h-[75px] rounded-[5px]"
+            onClick={() => {
+            }}
+          >
+            <img src={plus} className="w-[20px]" alt="dollar sign"></img>
+            More
+            <p className="text-[12px]">fund options</p>
         </div>
       </div> 
               
