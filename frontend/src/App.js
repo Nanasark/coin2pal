@@ -111,33 +111,8 @@ function App() {
           </>
           ) : (
             <div>Please Login
-               <div>Please Login</div>
-               <div>Please Login</div>
-               <div>Please Login</div>
-               <div>Please Login</div>
-                <div>Please Login</div> <div>Please Login</div>
-                <div>Please Login</div>
-                <div>Please Login</div>
-                <div>Please Login</div>
-                <div>Please Login</div>
-                 <div>Please Login</div> <div>Please Login</div>
-                 <div>Please Login</div>
-
-
-                 <div>Please Login</div>
-                 <div>Please Login</div>
-                  <div>Please Login</div> <div>Please Login</div>
-
-                  <div>Please Login</div>
-                   <div>Please Login</div>
-
-                    <div>Please Login</div>
-                     <div>Please Login</div>
-
-
-                     <div>Please Login</div> <div>Please Login</div>
-
-                      <div>Please Login</div>
+               
+             
             </div>
           )}
         </Content>
