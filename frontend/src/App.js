@@ -10,6 +10,10 @@ import { useConnect, useAccount, useDisconnect } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import axios from "axios";
 import Disclaimer from "./componets/Disclaimer";
+import Landinghero from "./componets/Landinghero";
+import Landingheader from "./componets/Landingheader";
+import About from "./componets/About";
+import Testcoinrade from "./componets/Testcoinrade"
 
 const { Header, Content } = Layout;
 
@@ -61,14 +65,18 @@ function App() {
   }, [isConnected]);
 
   return (
-    <div className="w-screen overflow-visible  bg-[#EAF8BF] h-screen  ">
+    <div className="w-screen overflow-x-hidden  bg-[#EAF8BF] h-screen  ">
       <Layout>
-        <Header className="w-screen bg-[#EAF8BF] lg:flex lg:justify-between lg:items-center">
-          <div className="flex gap-10 items-center">
+        <Header className={` w-screen bg-[#EAF8BF] lg:flex lg:justify-between lg:items-center}`}>
+          
+
+          {isConnected ? (
+            <div className="lg:flex lg:justify-between lg:items-center lg:gap-[350px]">
+            <div className="flex gap-10 items-center">
             <div className="relative">
               <img src={logo} alt="logo" className=" relative w-[200px] h-[80px]" ></img> 
             </div>
-           {isConnected &&
+            {isConnected &&
             <div className="relative flex justify-center gap-10">
               <div className="">Summary</div>
               <div className="">Activity</div>
@@ -76,19 +84,24 @@ function App() {
               <div className="">Wallet</div>
               <div className="">Help</div>
             </div>
-}
-          </div>
-
-          {isConnected ? (
+            }
+            </div>
             <Button className ="border border-[#006843] rounded-[20px] text-[#006843]" type={"primary"} onClick={disconnectAndSetNull}>
               Disconnect Wallet
             </Button>
+            </div>
+
+
           ) : (
-            <Button className="border border-[#006843] rounded-[20px] text-[#006843]" type={"primary"} onClick={()=>{
+            <div className="lg:flex lg:justify-between lg:items-center lg:gap-[850px]">
+            <Landingheader />
+              <Button className="border border-[#006843] rounded-[20px] text-[#006843]" type={"primary"} onClick={()=>{
               console.log(requests); connect();
             }}>
               Connect Wallet
             </Button>
+            </div>
+            
           )}
         </Header>
 
@@ -110,9 +123,10 @@ function App() {
           </div>
           </>
           ) : (
-            <div>Please Login
-               
-             
+            <div>
+             <Landinghero/>
+             <About />
+             <Testcoinrade />
             </div>
           )}
         </Content>
@@ -126,3 +140,5 @@ export default App;
 
 // 0x4Cb41F3abA88647beDEdF91856e9119C4f4Fe886 my smart contract 
 
+
+// w-screen bg-[#EAF8BF] lg:flex lg:justify-between lg:items-center

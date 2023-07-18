@@ -129,6 +129,28 @@ function convertArrayToObjects(arr) {
   return dataArray.reverse();
 }
 
+app.post("/setName", async (req, res) => {
+  const { userAddress, newName } = req.body;
+
+  try {
+    const response = await Moralis.EvmApi.utils.runContractFunction({
+      chain: "0x13881",
+      address: "0x4Cb41F3abA88647beDEdF91856e9119C4f4Fe886",
+      functionName: "setMyName", // Update with the appropriate function name in your smart contract
+      abi: ABI,
+      params: { _user: userAddress, _name: newName },
+    });
+
+    if (response.transactionHash) {
+      return res.status(200).json({ message: "Username set successfully" });
+    } else {
+      return res.status(400).json({ error: "Failed to set username" });
+    }
+  } catch (error) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.get("/getNameAndBalance", async (req, res) => {
   const { userAddress } = req.query;
 
